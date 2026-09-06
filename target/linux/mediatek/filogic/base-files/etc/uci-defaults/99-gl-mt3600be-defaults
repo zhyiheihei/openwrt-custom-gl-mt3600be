@@ -117,6 +117,20 @@ case "$(board_name)" in
 		uci -q set openclash.config.core_type='Meta'
 		uci -q set openclash.config.enable='0'
 		uci commit openclash
+
+		# ZeroTier: identity secret auto-generated on first start and written
+		# back to uci; network join is triggered by an empty
+		# /var/lib/zerotier-one/networks.d/<id>.conf created by the init script.
+		uci -q set zerotier.global='zerotier'
+		uci -q set zerotier.global.enabled='1'
+		uci -q set zerotier.global.secret=''
+		uci -q set zerotier.ltnet='network'
+		uci -q set zerotier.ltnet.id='466270de75000001'
+		uci -q set zerotier.ltnet.allow_managed='1'
+		uci -q set zerotier.ltnet.allow_global='0'
+		uci -q set zerotier.ltnet.allow_default='0'
+		uci -q set zerotier.ltnet.allow_dns='0'
+		uci commit zerotier
 	;;
 esac
 

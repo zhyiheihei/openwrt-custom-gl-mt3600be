@@ -124,6 +124,7 @@ ssh root@<路由器ip> 'sysupgrade -n /tmp/openwrt-mediatek-filogic-glinet_gl-mt
 - Wi-Fi 已验证可正常拉起双频 AP。
 - **风扇曲线优化**：重新映射了 PWM 风扇转速，新曲线为 0/96/160/224/255（对应 0%/38%/63%/88%/100%），相比原厂 0/64/128/192/255（0%/25%/50%/75%/100%）起步风量更大、过渡更平滑，兼顾散热与静音。
 - 已集成 USB 共享网络常见协议驱动与工具包（RNDIS/ECM/NCM/MBIM/QMI 等）。
+- **ZeroTier 预置**：首次启动自动生成设备身份（node ID，`zerotier-cli info` 查看）并加入网络 `466270de75000001`（`allow_managed` 模式，不改默认路由、不接管 DNS）；设备授权与固定 overlay 地址（`198.18.0.<index>`）由 ZeroTier controller 管理员侧完成。
 
 ## 包管理说明
 

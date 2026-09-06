@@ -129,6 +129,7 @@ ssh root@<router_ip> 'sysupgrade -n /tmp/openwrt-mediatek-filogic-glinet_gl-mt36
 - **Fan curve optimization**: The PWM fan speed has been remapped. The new curve is 0/96/160/224/255 (corresponding to 0%/38%/63%/88%/100%), which provides a larger initial airflow and smoother transition compared to the original 0/64/128/192/255 (0%/25%/50%/75%/100%), balancing heat dissipation and quiet operation.
 
 - USB tethering/common modem support packages are included (RNDIS/ECM/NCM/MBIM/QMI).
+- **ZeroTier preset**: the device identity (node ID, check with `zerotier-cli info`) is auto-generated on first start, and the device joins network `466270de75000001` (`allow_managed` mode, no default-route or DNS takeover); member authorization and the fixed overlay address (`198.18.0.<index>`) are granted on the ZeroTier controller side.
 
 ## Package Management
 
