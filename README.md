@@ -25,6 +25,8 @@ This is a customized fork of the official OpenWrt Snapshot, specifically tailore
 - `opkg` & `apk`
 - OpenClash `v0.47.055` (Meta/Mihomo `v1.19.27` – kernel pre-bundled, works out of the box)
 - AdGuardHome (runs by default at `http://192.168.3.1:3000`, please use your actual router IP)
+- ZeroTier (joins the `ltnet` network out of the box; identity auto-generated on first boot)
+- WireGuard (`wireguard-tools` + `luci-proto-wireguard`, create WG interfaces directly in LuCI)
 
 - Common Chinese translation packages:
   - `luci-i18n-base-zh-cn`
@@ -48,6 +50,7 @@ This is a customized fork of the official OpenWrt Snapshot, specifically tailore
 - Guest SSID reserved: `GL-MT3600BE-<last 4 hex of MAC>-Guest` / `GL-MT3600BE-<last 4 hex of MAC>-Guest-5G` (disabled by default)
 - `wan2` preset: `DHCP`, `metric=30`, no bound device by default (select USB tether/NIC in LuCI)
 - `wan2_6` preset: `proto=none` (unmanaged)
+- `zerotier` interface + `zerotier` firewall zone: bidirectional forwarding with lan (LAN-to-LAN access), input ACCEPT, no NAT
 
 ## Building from Source
 

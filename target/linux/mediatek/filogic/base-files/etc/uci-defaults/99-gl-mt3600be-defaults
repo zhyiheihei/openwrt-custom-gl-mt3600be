@@ -131,6 +131,28 @@ case "$(board_name)" in
 		uci -q set zerotier.ltnet.allow_default='0'
 		uci -q set zerotier.ltnet.allow_dns='0'
 		uci commit zerotier
+
+		# Bind the zt+ devices to a firewall zone so the ltnet overlay
+		# and the travel LAN can reach each other (routes are managed by
+		# the ltnet controller; no masquerade to keep source IPs)
+		uci -q set network.zerotier='interface'
+		uci -q set network.zerotier.device='zt+'
+		uci -q set network.zerotier.proto='none'
+		uci commit network
+
+		uci -q set firewall.zt_zone='zone'
+		uci -q set firewall.zt_zone.name='zerotier'
+		uci -q add_list firewall.zt_zone.network='zerotier'
+		uci -q set firewall.zt_zone.input='ACCEPT'
+		uci -q set firewall.zt_zone.output='ACCEPT'
+		uci -q set firewall.zt_zone.forward='REJECT'
+		uci -q set firewall.zt_fwd_lan='forwarding'
+		uci -q set firewall.zt_fwd_lan.src='zerotier'
+		uci -q set firewall.zt_fwd_lan.dest='lan'
+		uci -q set firewall.zt_fwd_zt='forwarding'
+		uci -q set firewall.zt_fwd_zt.src='lan'
+		uci -q set firewall.zt_fwd_zt.dest='zerotier'
+		uci commit firewall
 	;;
 esac
 

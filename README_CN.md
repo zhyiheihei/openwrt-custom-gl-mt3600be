@@ -25,6 +25,8 @@
 - `opkg` 与 `apk`
 - OpenClash `v0.47.055` (Meta/Mihomo `v1.19.27` – 内核已预置，开箱即用)
 - AdGuardHome(默认运行在 `http://192.168.3.1:3000`,具体以实际路由器IP地址为准)
+- ZeroTier(预置 `ltnet` 网络加入，首次启动自动生成身份)
+- WireGuard(`wireguard-tools` + `luci-proto-wireguard`，LuCI 中直接新建 WG 接口)
 
 - 常用中文包:
   - `luci-i18n-base-zh-cn`
@@ -48,6 +50,7 @@
 - 访客 SSID 预留: `GL-MT3600BE-<MAC末4位>-Guest` / `GL-MT3600BE-<MAC末4位>-Guest-5G`（默认关闭）
 - `wan2` 预置: `DHCP`，`metric=30`，默认不绑定设备（可在 LuCI 中手动选择 USB 网卡/USB 共享接口）
 - `wan2_6` 预置: `proto=none`（未配置）
+- `zerotier` 接口 + `zerotier` 防火墙区：与 lan 双向放行（内网互访），入站 ACCEPT，不做 NAT
 
 ### 可启用的配置
 
