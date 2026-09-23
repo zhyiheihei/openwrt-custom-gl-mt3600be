@@ -121,9 +121,12 @@ case "$(board_name)" in
 		# ZeroTier: identity secret auto-generated on first start and written
 		# back to uci; network join is triggered by an empty
 		# /var/lib/zerotier-one/networks.d/<id>.conf created by the init script.
+		# Never blank an existing secret: a kept-config upgrade or an
+		# unexpected uci-defaults re-run would otherwise orphan the node in
+		# the ltnet controller (fresh identity = ACCESS_DENIED after reboot).
 		uci -q set zerotier.global='zerotier'
 		uci -q set zerotier.global.enabled='1'
-		uci -q set zerotier.global.secret=''
+		uci -q get zerotier.global.secret >/dev/null || uci -q set zerotier.global.secret=''
 		uci -q set zerotier.ltnet='network'
 		uci -q set zerotier.ltnet.id='466270de75000001'
 		uci -q set zerotier.ltnet.allow_managed='1'
