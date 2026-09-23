@@ -143,6 +143,7 @@ case "$(board_name)" in
 		uci -q set firewall.zt_zone='zone'
 		uci -q set firewall.zt_zone.name='zerotier'
 		uci -q add_list firewall.zt_zone.network='zerotier'
+		uci -q add_list firewall.zt_zone.devices='zt+'
 		uci -q set firewall.zt_zone.input='ACCEPT'
 		uci -q set firewall.zt_zone.output='ACCEPT'
 		uci -q set firewall.zt_zone.forward='REJECT'
